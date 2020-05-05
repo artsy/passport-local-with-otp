@@ -5,12 +5,12 @@ var chai = require('chai')
 
 
 describe('Strategy', function() {
-    
+
   describe('encountering an error during verification', function() {
-    var strategy = new Strategy(function(username, password, done) {
+    var strategy = new Strategy(function(username, password, otp, done) {
       done(new Error('something went wrong'));
     });
-    
+
     var err;
     
     before(function(done) {
@@ -23,6 +23,7 @@ describe('Strategy', function() {
           req.body = {};
           req.body.username = 'johndoe';
           req.body.password = 'secret';
+          req.body.otp = '123456';
         })
         .authenticate();
     });
@@ -32,12 +33,12 @@ describe('Strategy', function() {
       expect(err.message).to.equal('something went wrong');
     });
   });
-  
+
   describe('encountering an exception during verification', function() {
-    var strategy = new Strategy(function(username, password, done) {
+    var strategy = new Strategy(function(username, password, otp, done) {
       throw new Error('something went horribly wrong');
     });
-    
+
     var err;
     
     before(function(done) {
@@ -50,6 +51,7 @@ describe('Strategy', function() {
           req.body = {};
           req.body.username = 'johndoe';
           req.body.password = 'secret';
+          req.body.otp = '123456';
         })
         .authenticate();
     });

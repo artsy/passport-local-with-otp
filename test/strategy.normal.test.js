@@ -8,7 +8,7 @@ var chai = require('chai')
 describe('Strategy', function() {
     
   describe('handling a request with valid credentials in body', function() {
-    var strategy = new Strategy(function(username, password, done) {
+    var strategy = new Strategy(function(username, password, otp, done) {
       if (username == 'johndoe' && password == 'secret') {
         return done(null, { id: '1234' }, { scope: 'read' });
       }
@@ -29,6 +29,7 @@ describe('Strategy', function() {
           req.body = {};
           req.body.username = 'johndoe';
           req.body.password = 'secret';
+          req.body.otp = '123456';
         })
         .authenticate();
     });
@@ -45,7 +46,7 @@ describe('Strategy', function() {
   });
   
   describe('handling a request with valid credentials in query', function() {
-    var strategy = new Strategy(function(username, password, done) {
+    var strategy = new Strategy(function(username, password, otp, done) {
       if (username == 'johndoe' && password == 'secret') {
         return done(null, { id: '1234' }, { scope: 'read' });
       }
@@ -66,6 +67,7 @@ describe('Strategy', function() {
           req.query = {};
           req.query.username = 'johndoe';
           req.query.password = 'secret';
+          req.query.otp = '123456';
         })
         .authenticate();
     });
@@ -82,7 +84,7 @@ describe('Strategy', function() {
   });
   
   describe('handling a request without a body', function() {
-    var strategy = new Strategy(function(username, password, done) {
+    var strategy = new Strategy(function(username, password, otp, done) {
       throw new Error('should not be called');
     });
     
@@ -106,7 +108,7 @@ describe('Strategy', function() {
   });
   
   describe('handling a request without a body, but no username and password', function() {
-    var strategy = new Strategy(function(username, password, done) {
+    var strategy = new Strategy(function(username, password, otp, done) {
       throw new Error('should not be called');
     });
     
@@ -133,7 +135,7 @@ describe('Strategy', function() {
   });
   
   describe('handling a request without a body, but no password', function() {
-    var strategy = new Strategy(function(username, password, done) {
+    var strategy = new Strategy(function(username, password, otp, done) {
       throw new Error('should not be called');
     });
     
@@ -161,7 +163,7 @@ describe('Strategy', function() {
   });
   
   describe('handling a request without a body, but no username', function() {
-    var strategy = new Strategy(function(username, password, done) {
+    var strategy = new Strategy(function(username, password, otp, done) {
       throw new Error('should not be called');
     });
     
