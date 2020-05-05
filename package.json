@@ -1,7 +1,7 @@
 {
-  "name": "passport-local",
-  "version": "1.0.0",
-  "description": "Local username and password authentication strategy for Passport.",
+  "name": "passport-local-with-otp",
+  "version": "0.2.0",
+  "description": "Local username, password and otp authentication strategy for Passport.",
   "keywords": [
     "passport",
     "local",
@@ -9,19 +9,17 @@
     "authn",
     "authentication",
     "username",
-    "password"
+    "password",
+    "otp"
   ],
-  "author": {
-    "name": "Jared Hanson",
-    "email": "jaredhanson@gmail.com",
-    "url": "http://www.jaredhanson.net/"
-  },
+  "author": "Artsy Inc. (https://www.artsy.net)",
+  "contributors": [
+    "Artsy Engineering (https://artsy.github.io)",
+    "Jared Hanson"
+  ],
   "repository": {
     "type": "git",
-    "url": "git://github.com/jaredhanson/passport-local.git"
-  },
-  "bugs": {
-    "url": "http://github.com/jaredhanson/passport-local/issues"
+    "url": "git://github.com/artsy/passport-local-with-otp.git"
   },
   "license": "MIT",
   "licenses": [
@@ -30,7 +28,7 @@
       "url": "http://www.opensource.org/licenses/MIT"
     }
   ],
-  "main": "./lib",
+  "main": "./lib/index.js",
   "dependencies": {
     "passport-strategy": "1.x.x"
   },

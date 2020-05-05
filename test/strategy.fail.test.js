@@ -6,12 +6,12 @@ var chai = require('chai')
 
 
 describe('Strategy', function() {
-    
+
   describe('failing authentication', function() {
-    var strategy = new Strategy(function(username, password, done) {
+    var strategy = new Strategy(function(username, password, otp, done) {
       return done(null, false);
     });
-    
+
     var info;
     
     before(function(done) {
@@ -24,6 +24,7 @@ describe('Strategy', function() {
           req.body = {};
           req.body.username = 'johndoe';
           req.body.password = 'secret';
+          req.body.otp = '123456';
         })
         .authenticate();
     });
@@ -32,12 +33,12 @@ describe('Strategy', function() {
       expect(info).to.be.undefined;
     });
   });
-  
+
   describe('failing authentication with info', function() {
-    var strategy = new Strategy(function(username, password, done) {
+    var strategy = new Strategy(function(username, password, otp, done) {
       return done(null, false, { message: 'authentication failed' });
     });
-    
+
     var info;
     
     before(function(done) {
@@ -50,6 +51,7 @@ describe('Strategy', function() {
           req.body = {};
           req.body.username = 'johndoe';
           req.body.password = 'secret';
+          req.body.otp = '123456';
         })
         .authenticate();
     });

@@ -6,12 +6,12 @@ var chai = require('chai')
 
 
 describe('Strategy', function() {
-    
+
   describe('handling a request without a body, but no username and password, with message option to authenticate', function() {
-    var strategy = new Strategy(function(username, password, done) {
+    var strategy = new Strategy(function(username, password, otp, done) {
       throw new Error('should not be called');
     });
-    
+
     var info, status;
     
     before(function(done) {

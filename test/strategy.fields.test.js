@@ -6,10 +6,10 @@ var chai = require('chai')
 
 
 describe('Strategy', function() {
-    
+
   describe('handling a request with valid credentials in body using custom field names', function() {
-    var strategy = new Strategy({ usernameField: 'userid', passwordField: 'passwd' }, function(username, password, done) {
-      if (username == 'johndoe' && password == 'secret') {
+    var strategy = new Strategy({ usernameField: 'userid', passwordField: 'passwd', otpField: 'otp' }, function(username, password, otp, done) {
+      if (username == 'johndoe' && password == 'secret' && otp == '123456') {
         return done(null, { id: '1234' }, { scope: 'read' });
       }
       return done(null, false);
@@ -29,6 +29,7 @@ describe('Strategy', function() {
           req.body = {};
           req.body.userid = 'johndoe';
           req.body.passwd = 'secret';
+          req.body.otp = '123456';
         })
         .authenticate();
     });
@@ -43,10 +44,10 @@ describe('Strategy', function() {
       expect(info.scope).to.equal('read');
     });
   });
-  
+
   describe('handling a request with valid credentials in body using custom field names with object notation', function() {
-    var strategy = new Strategy({ usernameField: 'user[username]', passwordField: 'user[password]' }, function(username, password, done) {
-      if (username == 'johndoe' && password == 'secret') {
+    var strategy = new Strategy({ usernameField: 'user[username]', passwordField: 'user[password]', otpField: 'user[otp]' }, function(username, password, otp, done) {
+      if (username == 'johndoe' && password == 'secret' && otp == '123456') {
         return done(null, { id: '1234' }, { scope: 'read' });
       }
       return done(null, false);
@@ -67,6 +68,7 @@ describe('Strategy', function() {
           req.body.user = {};
           req.body.user.username = 'johndoe';
           req.body.user.password = 'secret';
+          req.body.user.otp = '123456';
         })
         .authenticate();
     });
