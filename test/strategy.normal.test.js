@@ -6,83 +6,161 @@ var chai = require('chai')
 
 
 describe('Strategy', function() {
-    
-  describe('handling a request with valid credentials in body', function() {
-    var strategy = new Strategy(function(username, password, otp, done) {
-      if (username == 'johndoe' && password == 'secret') {
-        return done(null, { id: '1234' }, { scope: 'read' });
-      }
-      return done(null, false);
+
+  describe('when otp needs to be verified', function() {
+    describe('handling a request with valid credentials in body', function() {
+      var strategy = new Strategy(function(username, password, otp, done) {
+        if (username == 'johndoe' && password == 'secret' && otp == '123456') {
+          return done(null, { id: '1234' }, { scope: 'read' });
+        }
+        return done(null, false);
+      });
+      
+      var user
+        , info;
+      
+      before(function(done) {
+        chai.passport(strategy)
+          .success(function(u, i) {
+            user = u;
+            info = i;
+            done();
+          })
+          .req(function(req) {
+            req.body = {};
+            req.body.username = 'johndoe';
+            req.body.password = 'secret';
+            req.body.otp = '123456';
+          })
+          .authenticate();
+      });
+      
+      it('should supply user', function() {
+        expect(user).to.be.an.object;
+        expect(user.id).to.equal('1234');
+      });
+      
+      it('should supply info', function() {
+        expect(info).to.be.an.object;
+        expect(info.scope).to.equal('read');
+      });
     });
     
-    var user
-      , info;
-    
-    before(function(done) {
-      chai.passport(strategy)
-        .success(function(u, i) {
-          user = u;
-          info = i;
-          done();
-        })
-        .req(function(req) {
-          req.body = {};
-          req.body.username = 'johndoe';
-          req.body.password = 'secret';
-          req.body.otp = '123456';
-        })
-        .authenticate();
-    });
-    
-    it('should supply user', function() {
-      expect(user).to.be.an.object;
-      expect(user.id).to.equal('1234');
-    });
-    
-    it('should supply info', function() {
-      expect(info).to.be.an.object;
-      expect(info.scope).to.equal('read');
+    describe('handling a request with valid credentials in query', function() {
+      var strategy = new Strategy(function(username, password, otp, done) {
+        if (username == 'johndoe' && password == 'secret' && otp == '123456') {
+          return done(null, { id: '1234' }, { scope: 'read' });
+        }
+        return done(null, false);
+      });
+      
+      var user
+        , info;
+      
+      before(function(done) {
+        chai.passport(strategy)
+          .success(function(u, i) {
+            user = u;
+            info = i;
+            done();
+          })
+          .req(function(req) {
+            req.query = {};
+            req.query.username = 'johndoe';
+            req.query.password = 'secret';
+            req.query.otp = '123456';
+          })
+          .authenticate();
+      });
+      
+      it('should supply user', function() {
+        expect(user).to.be.an.object;
+        expect(user.id).to.equal('1234');
+      });
+      
+      it('should supply info', function() {
+        expect(info).to.be.an.object;
+        expect(info.scope).to.equal('read');
+      });
     });
   });
   
-  describe('handling a request with valid credentials in query', function() {
-    var strategy = new Strategy(function(username, password, otp, done) {
-      if (username == 'johndoe' && password == 'secret') {
-        return done(null, { id: '1234' }, { scope: 'read' });
-      }
-      return done(null, false);
+  describe('when otp does not need to be verified', function() {
+    describe('handling a request with valid username and password (but no otp) in body', function() {
+      var strategy = new Strategy(function(username, password, otp, done) {
+        if (username == 'johndoe' && password == 'secret') {
+          return done(null, { id: '1234' }, { scope: 'read' });
+        }
+        return done(null, false);
+      });
+
+      var user
+        , info;
+
+      before(function(done) {
+        chai.passport(strategy)
+          .success(function(u, i) {
+            user = u;
+            info = i;
+            done();
+          })
+          .req(function(req) {
+            req.body = {};
+            req.body.username = 'johndoe';
+            req.body.password = 'secret';
+          })
+          .authenticate();
+      });
+
+      it('should supply user', function() {
+        expect(user).to.be.an.object;
+        expect(user.id).to.equal('1234');
+      });
+
+      it('should supply info', function() {
+        expect(info).to.be.an.object;
+        expect(info.scope).to.equal('read');
+      });
     });
-    
-    var user
-      , info;
-    
-    before(function(done) {
-      chai.passport(strategy)
-        .success(function(u, i) {
-          user = u;
-          info = i;
-          done();
-        })
-        .req(function(req) {
-          req.query = {};
-          req.query.username = 'johndoe';
-          req.query.password = 'secret';
-          req.query.otp = '123456';
-        })
-        .authenticate();
+
+    describe('handling a request with valid username and password (but no otp) in query', function() {
+      var strategy = new Strategy(function(username, password, otp, done) {
+        if (username == 'johndoe' && password == 'secret') {
+          return done(null, { id: '1234' }, { scope: 'read' });
+        }
+        return done(null, false);
+      });
+
+      var user
+        , info;
+
+      before(function(done) {
+        chai.passport(strategy)
+          .success(function(u, i) {
+            user = u;
+            info = i;
+            done();
+          })
+          .req(function(req) {
+            req.query = {};
+            req.query.username = 'johndoe';
+            req.query.password = 'secret';
+          })
+          .authenticate();
+      });
+
+      it('should supply user', function() {
+        expect(user).to.be.an.object;
+        expect(user.id).to.equal('1234');
+      });
+
+      it('should supply info', function() {
+        expect(info).to.be.an.object;
+        expect(info.scope).to.equal('read');
+      });
     });
-    
-    it('should supply user', function() {
-      expect(user).to.be.an.object;
-      expect(user.id).to.equal('1234');
-    });
-    
-    it('should supply info', function() {
-      expect(info).to.be.an.object;
-      expect(info.scope).to.equal('read');
-    });
-  });
-  
+  })
+
   describe('handling a request without a body', function() {
     var strategy = new Strategy(function(username, password, otp, done) {
       throw new Error('should not be called');
