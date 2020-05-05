@@ -19,5 +19,3 @@ npm-debug.log
 .git*
 
 # Utilities
-.jshintrc
-.travis.yml
