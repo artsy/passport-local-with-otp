@@ -1,48 +1,38 @@
-# passport-local
+# passport-local-with-otp
 
-[Passport](http://passportjs.org/) strategy for authenticating with a username
-and password.
+[Passport](http://passportjs.org/) strategy for authenticating with a username,
+password and OTP.
 
-This module lets you authenticate using a username and password in your Node.js
-applications.  By plugging into Passport, local authentication can be easily and
-unobtrusively integrated into any application or framework that supports
-[Connect](http://www.senchalabs.org/connect/)-style middleware, including
-[Express](http://expressjs.com/).
+This module lets you authenticate using a username, password and time-based
+one-time password (OTP) in your Node.js applications.
 
----
-
-<p align="center"><a href="http://www.tkqlhce.com/click-8907558-13433666" target="_top">1Password, the only password manager you should trust.</a> Industry-leading security and award winning design.</p>
-
----
-
-[![npm](https://img.shields.io/npm/v/passport-local.svg)](https://www.npmjs.com/package/passport-local)
-[![build](https://img.shields.io/travis/jaredhanson/passport-local.svg)](https://travis-ci.org/jaredhanson/passport-local)
-[![coverage](https://img.shields.io/coveralls/jaredhanson/passport-local.svg)](https://coveralls.io/github/jaredhanson/passport-local)
-[...](https://github.com/jaredhanson/passport-local/wiki/Status)
+This is a fork of https://github.com/jaredhanson/passport-local, adapted for the
+use case of submitting username, password and otp in unison to an upstream
+server for authentication and second-factor verification in a single request.
 
 ## Install
 
 ```bash
-$ npm install passport-local
+$ yarn add passport-local-with-otp
 ```
 
 ## Usage
 
 #### Configure Strategy
 
-The local authentication strategy authenticates users using a username and
-password.  The strategy requires a `verify` callback, which accepts these
-credentials and calls `done` providing a user.
+The local-with-otp authentication strategy authenticates users using a username
+password, and otp.  The strategy requires a `verify` callback, which accepts
+these credentials and calls `done` providing a user.
 
 ```js
 passport.use(new LocalStrategy(
-  function(username, password, done) {
-    User.findOne({ username: username }, function (err, user) {
-      if (err) { return done(err); }
-      if (!user) { return done(null, false); }
-      if (!user.verifyPassword(password)) { return done(null, false); }
-      return done(null, user);
-    });
+  function(username, password, otp, done) {
+    try {
+      const user = authenticateWithUpstreamService(username, password, otp)
+      return done(null, user)
+    } catch (error) {
+      return done(err)
+    }
   }
 ));
 ```
@@ -55,18 +45,20 @@ The available options are:
 
 * `usernameField` - Optional, defaults to 'username'
 * `passwordField` - Optional, defaults to 'password'
+* `otpField` - Optional, defaults to 'otp'
 
 Both fields define the name of the properties in the POST body that are sent to the server.
 
 #### Parameters
 
 By default, `LocalStrategy` expects to find credentials in parameters
-named username and password. If your site prefers to name these fields
+named username, password and otp. If your site prefers to name these fields
 differently, options are available to change the defaults.
 
     passport.use(new LocalStrategy({
         usernameField: 'email',
         passwordField: 'passwd',
+        otpField: 'otp_attempt',
         session: false
       },
       function(username, password, done) {
@@ -84,6 +76,7 @@ accordingly.
     passport.use(new LocalStrategy({
         usernameField: 'email',
         passwordField: 'passwd',
+        otpField: 'otp_attempt',
         passReqToCallback: true,
         session: false
       },
@@ -95,7 +88,7 @@ accordingly.
 
 #### Authenticate Requests
 
-Use `passport.authenticate()`, specifying the `'local'` strategy, to
+Use `passport.authenticate()`, specifying the `'local-with-otp'` strategy, to
 authenticate requests.
 
 For example, as route middleware in an [Express](http://expressjs.com/)
@@ -114,8 +107,6 @@ app.post('/login',
 Developers using the popular [Express](http://expressjs.com/) web framework can
 refer to an [example](https://github.com/passport/express-4.x-local-example)
 as a starting point for their own web applications.
-
-Additional examples can be found on the [wiki](https://github.com/jaredhanson/passport-local/wiki/Examples).
 
 ## License
 
