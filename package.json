@@ -1,6 +1,6 @@
 {
-  "name": "passport-local-with-otp",
-  "version": "0.2.0",
+  "name": "@artsy/passport-local-with-otp",
+  "version": "0.3.0",
   "description": "Local username, password and otp authentication strategy for Passport.",
   "keywords": [
     "passport",
