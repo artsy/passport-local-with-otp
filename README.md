@@ -25,7 +25,7 @@ password, and otp.  The strategy requires a `verify` callback, which accepts
 these credentials and calls `done` providing a user.
 
 ```js
-passport.use(new LocalStrategy(
+passport.use(new LocalWithOtpStrategy(
   function(username, password, otp, done) {
     try {
       const user = authenticateWithUpstreamService(username, password, otp)
@@ -39,7 +39,7 @@ passport.use(new LocalStrategy(
 
 ##### Available Options
 
-This strategy takes an optional options hash before the function, e.g. `new LocalStrategy({/* options */, callback})`.
+This strategy takes an optional options hash before the function, e.g. `new LocalWithOtpStrategy({/* options */, callback})`.
 
 The available options are:
 
@@ -51,11 +51,11 @@ Both fields define the name of the properties in the POST body that are sent to 
 
 #### Parameters
 
-By default, `LocalStrategy` expects to find credentials in parameters
+By default, `LocalWithOtpStrategy` expects to find credentials in parameters
 named username, password and otp. If your site prefers to name these fields
 differently, options are available to change the defaults.
 
-    passport.use(new LocalStrategy({
+    passport.use(new LocalWithOtpStrategy({
         usernameField: 'email',
         passwordField: 'passwd',
         otpField: 'otp_attempt',
@@ -73,7 +73,7 @@ The verify callback can be supplied with the `request` object by setting
 the `passReqToCallback` option to true, and changing callback arguments
 accordingly.
 
-    passport.use(new LocalStrategy({
+    passport.use(new LocalWithOtpStrategy({
         usernameField: 'email',
         passwordField: 'passwd',
         otpField: 'otp_attempt',
@@ -95,7 +95,7 @@ For example, as route middleware in an [Express](http://expressjs.com/)
 application:
 
 ```js
-app.post('/login', 
+app.post('/login',
   passport.authenticate('local', { failureRedirect: '/login' }),
   function(req, res) {
     res.redirect('/');
