@@ -33,15 +33,22 @@
     "passport-strategy": "1.x.x"
   },
   "devDependencies": {
+    "chai": "2.x.x",
+    "chai-passport-strategy": "0.1.x",
     "make-node": "0.4.6",
     "mocha": "2.x.x",
-    "chai": "2.x.x",
-    "chai-passport-strategy": "0.1.x"
+    "prettier": "^2.0.5"
   },
   "engines": {
     "node": ">= 0.4.0"
   },
   "scripts": {
-    "test": "make test"
+    "test": "make test",
+    "prettier-write": "prettier --write {lib,test}/*.js"
+  },
+  "prettier": {
+    "bracketSpacing": true,
+    "semi": false,
+    "singleQuote": false
   }
 }
