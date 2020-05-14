@@ -1,6 +1,6 @@
 # v0.3.1 (Thu May 14 2020)
 
-#### 🐛  Bug Fix
+#### Initial `auto` publish
 
 - Add missing auto config [#6](https://github.com/artsy/passport-local-with-otp/pull/6) ([@anandaroop](https://github.com/anandaroop))
 - Standardize CI setup [#5](https://github.com/artsy/passport-local-with-otp/pull/5) ([@anandaroop](https://github.com/anandaroop))
