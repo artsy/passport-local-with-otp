@@ -13,7 +13,7 @@ describe("Strategy", function () {
 
     before(function (done) {
       chai
-        .passport(strategy)
+        .passport.use(strategy)
         .error(function (e) {
           err = e
           done()
@@ -42,7 +42,7 @@ describe("Strategy", function () {
 
     before(function (done) {
       chai
-        .passport(strategy)
+        .passport.use(strategy)
         .error(function (e) {
           err = e
           done()
