@@ -1,4 +1,5 @@
-# passport-local-with-otp
+# passport-local-with-otp [![Artsy](https://circleci.com/gh/artsy/passport-local-with-otp.svg?style=svg)](https://app.circleci.com/pipelines/github/artsy/passport-local-with-otp)
+
 
 [Passport](http://passportjs.org/) strategy for authenticating with a username,
 password and OTP.
@@ -9,6 +10,14 @@ one-time password (OTP) in your Node.js applications.
 This is a fork of https://github.com/jaredhanson/passport-local, adapted for the
 use case of submitting username, password and otp in unison to an upstream
 server for authentication and second-factor verification in a single request.
+
+## Meta
+
+- **State:** production
+- **GitHub:** https://github.com/artsy/passport-local-with-otp
+- **NPM:** [![npm version](https://badge.fury.io/js/%40artsy%2Fpassport-local-with-otp.svg)](https://badge.fury.io/js/%40artsy%2Fpassport-local-with-otp)
+- **CI:** [![Artsy](https://circleci.com/gh/artsy/passport-local-with-otp.svg?style=shield)](https://app.circleci.com/pipelines/github/artsy/passport-local-with-otp)
+- **Point People:** [@anandaroop][anandaroop]
 
 ## Install
 
@@ -51,7 +60,7 @@ Both fields define the name of the properties in the POST body that are sent to 
 
 #### Parameters
 
-By default, `LocalWithOtpStrategy` expects to find credentials in parameters
+By default, `**Local**WithOtpStrategy` expects to find credentials in parameters
 named username, password and otp. If your site prefers to name these fields
 differently, options are available to change the defaults.
 
@@ -113,3 +122,6 @@ as a starting point for their own web applications.
 [The MIT License](http://opensource.org/licenses/MIT)
 
 Copyright (c) 2011-2015 Jared Hanson <[http://jaredhanson.net/](http://jaredhanson.net/)>
+
+[anandaroop]: https://github.com/anandaroop
+[circleci]: https://app.circleci.com/pipelines/github/artsy/passport-local-with-otp
