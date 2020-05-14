@@ -14,7 +14,7 @@ describe("Strategy", function () {
 
     before(function (done) {
       chai
-        .passport(strategy)
+        .passport.use(strategy)
         .fail(function (i, s) {
           info = i
           status = s
@@ -29,7 +29,7 @@ describe("Strategy", function () {
     })
 
     it("should fail with info and status", function () {
-      expect(info).to.be.an.object
+      expect(info).to.be.an('object')
       expect(info.message).to.equal("Something is wrong with this request")
       expect(status).to.equal(400)
     })

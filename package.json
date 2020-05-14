@@ -33,10 +33,10 @@
     "passport-strategy": "1.x.x"
   },
   "devDependencies": {
-    "chai": "2.x.x",
-    "chai-passport-strategy": "0.1.x",
+    "chai": "^4.0.0",
+    "chai-passport-strategy": "^1.0.0",
     "make-node": "0.4.6",
-    "mocha": "2.x.x",
+    "mocha": "^7.0.0",
     "prettier": "^2.0.5"
   },
   "engines": {
