@@ -1,7 +1,8 @@
-# passport-local-with-otp [![Artsy](https://circleci.com/gh/artsy/passport-local-with-otp.svg?style=svg)](https://app.circleci.com/pipelines/github/artsy/passport-local-with-otp)
+# passport-local-with-otp
 
+![build status](https://circleci.com/gh/artsy/passport-local-with-otp.svg?style=shield) ![npm version](https://badge.fury.io/js/%40artsy%2Fpassport-local-with-otp.svg)
 
-[Passport](http://passportjs.org/) strategy for authenticating with a username,
+[Passport] strategy for authenticating with a username,
 password and OTP.
 
 This module lets you authenticate using a username, password and time-based
@@ -15,8 +16,8 @@ server for authentication and second-factor verification in a single request.
 
 - **State:** production
 - **GitHub:** https://github.com/artsy/passport-local-with-otp
-- **NPM:** [![npm version](https://badge.fury.io/js/%40artsy%2Fpassport-local-with-otp.svg)](https://badge.fury.io/js/%40artsy%2Fpassport-local-with-otp)
-- **CI:** [![Artsy](https://circleci.com/gh/artsy/passport-local-with-otp.svg?style=shield)](https://app.circleci.com/pipelines/github/artsy/passport-local-with-otp)
+- **CI:** [CircleCI]
+- **NPM:** New versions of [@artsy/passport-local-with-otp][npm_package] are published on every merge to master via our shared `auto` [configuration][auto_orb]
 - **Point People:** [@anandaroop][anandaroop]
 
 ## Install
@@ -123,5 +124,8 @@ as a starting point for their own web applications.
 
 Copyright (c) 2011-2015 Jared Hanson <[http://jaredhanson.net/](http://jaredhanson.net/)>
 
+[Passport]: http://passportjs.org/
+[CircleCI]: https://app.circleci.com/pipelines/github/artsy/passport-local-with-otp
 [anandaroop]: https://github.com/anandaroop
-[circleci]: https://app.circleci.com/pipelines/github/artsy/passport-local-with-otp
+[npm_package]: https://www.npmjs.com/package/@artsy/passport-local-with-otp
+[auto_orb]: https://github.com/artsy/orbs/tree/master/src/auto
