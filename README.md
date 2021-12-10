@@ -17,7 +17,7 @@ server for authentication and second-factor verification in a single request.
 - **State:** production
 - **GitHub:** https://github.com/artsy/passport-local-with-otp
 - **CI:** [CircleCI]
-- **NPM:** New versions of [@artsy/passport-local-with-otp][npm_package] are published on every merge to master via our shared `auto` [configuration][auto_orb]
+- **NPM:** New versions of [@artsy/passport-local-with-otp][npm_package] are published on every merge to main via our shared `auto` [configuration][auto_orb]
 - **Point People:** [@anandaroop][anandaroop]
 
 ## Install
@@ -128,4 +128,4 @@ Copyright (c) 2011-2015 Jared Hanson <[http://jaredhanson.net/](http://jaredhans
 [CircleCI]: https://app.circleci.com/pipelines/github/artsy/passport-local-with-otp
 [anandaroop]: https://github.com/anandaroop
 [npm_package]: https://www.npmjs.com/package/@artsy/passport-local-with-otp
-[auto_orb]: https://github.com/artsy/orbs/tree/master/src/auto
+[auto_orb]: https://github.com/artsy/orbs/tree/main/src/auto

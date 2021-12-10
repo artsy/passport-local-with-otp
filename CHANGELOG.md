@@ -9,7 +9,7 @@
 - Initial fork to support one-time passwords (OTPs) [#1](https://github.com/artsy/passport-local-with-otp/pull/1) ([@anandaroop](https://github.com/anandaroop))
 - Add default Circle config [#2](https://github.com/artsy/passport-local-with-otp/pull/2) ([@anandaroop](https://github.com/anandaroop))
 
-#### ⚠️  Pushed to `master`
+#### ⚠️  Pushed to `main`
 
 - Add back logging for when server is started. ([@jaredhanson](https://github.com/jaredhanson))
 - Update README. ([@jaredhanson](https://github.com/jaredhanson))
@@ -52,7 +52,7 @@
 - added remember me example ([@andr3w321](https://github.com/andr3w321))
 - Update Makefile and CI. ([@jaredhanson](https://github.com/jaredhanson))
 - Continue using flash in express3 example. ([@jaredhanson](https://github.com/jaredhanson))
-- Merge branch 'master' of https://github.com/andr3w321/passport-local into examples ([@jaredhanson](https://github.com/jaredhanson))
+- Merge branch 'main' of https://github.com/andr3w321/passport-local into examples ([@jaredhanson](https://github.com/jaredhanson))
 - Merge remote-tracking branch 'origin' ([@andr3w321](https://github.com/andr3w321))
 - added bcrypt ([@andr3w321](https://github.com/andr3w321))
 - added mongoose example ([@andr3w321](https://github.com/andr3w321))
