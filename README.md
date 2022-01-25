@@ -1,4 +1,6 @@
-# passport-local-with-otp
+# ⚠️ This repo has been deprecated and the code moved directly into [Force](https://github.com/artsy/force/blob/master/src/lib/passport-local-with-otp) 
+
+## passport-local-with-otp
 
 ![build status](https://circleci.com/gh/artsy/passport-local-with-otp.svg?style=shield) ![npm version](https://badge.fury.io/js/%40artsy%2Fpassport-local-with-otp.svg)
 
